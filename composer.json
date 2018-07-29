@@ -1,0 +1,24 @@
+{
+    "name": "anvein/pipedrive_sdk",
+    "description": "SDK для pipedrive",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Vitaly Nokhrin",
+            "email": "nokhrinvitaly@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "anvein\\pipedrive_sdk\\": "lib/"
+        }
+    },
+    "require": {
+        "php-http/client-implementation": "^1.0",
+        "php-http/curl-client": "~1",
+        "php": "7.*",
+        "ext-curl": "*"
+    }
+}

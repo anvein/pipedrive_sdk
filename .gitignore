@@ -11,3 +11,5 @@ Thumbs.db
 .~lock.*
 *.conf
 ubuntu-*.log
+
+/vendor/
