@@ -16,8 +16,7 @@
         }
     },
     "require": {
-        "php-http/client-implementation": "^1.0",
-        "php-http/curl-client": "~1",
+        "guzzlehttp/guzzle": "~6",
         "php": "7.*",
         "ext-curl": "*"
     }

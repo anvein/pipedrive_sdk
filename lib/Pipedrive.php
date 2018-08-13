@@ -4,16 +4,17 @@ namespace anvein\pipedrive_sdk;
 
 
 use anvein\pipedrive_sdk\Entities\DealField;
-use anvein\pipedrive_sdk\Loggers\ILogger;
 use anvein\pipedrive_sdk\HttpClients\IHttpClient;
+use anvein\pipedrive_sdk\Loggers\ILogger;
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Client;
 
 class Pipedrive
 {
     /**
      * URI подключения API
      */
-    const CONNECT_URI = 'https://api.pipedrive.com/v1';
-
+    const API_URI = 'https://api.pipedrive.com/v1/';
 
     /**
      * @var ILogger|null
@@ -25,6 +26,17 @@ class Pipedrive
      */
     protected $httpClient = null;
 
+    /**
+     * @var string
+     */
+    protected $token = '';
+
+    /**
+     * Включение режима отладки
+     *
+     * @var bool
+     */
+    protected $isDebug = false;
 
     /**
      * Сущности
@@ -59,9 +71,15 @@ class Pipedrive
      *
      * @param string $token
      */
-    public function __construct(string $token, IHttpClient $httpClient = null, ILogger $logger = null)
+    public function __construct(string $token, ClientInterface $httpClient = null, ILogger $logger = null, bool $isDebug = false)
     {
+        $this->token = $token;
+        $this->isDebug = $isDebug;
 
+        if (is_null($httpClient)) {
+            $httpClient = new Client;
+        }
+        $this->httpClient = $httpClient;
 
         $this->dealField = new DealField($this);
     }
@@ -69,27 +87,35 @@ class Pipedrive
     /**
      * Возвращает токен подключения
      *
-     * @return string|null
+     * @return string
      */
-    public function getToken()
+    public function getToken(): string
     {
-        return $this->getToken();
+        return $this->token;
     }
 
     /**
-     * @return IHttpClient|null
+     * @return IHttpClient
      */
-    public function getHttpClient()
+    public function getHttpClient(): ClientInterface
     {
         return $this->httpClient;
     }
 
     /**
-     * @return ILogger|null
+     * @return ILogger
      */
-    public function getLogger()
+    public function getLogger(): ILogger
     {
         return $this->logger;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsDebug(): bool
+    {
+        return $this->isDebug;
     }
 
 }
