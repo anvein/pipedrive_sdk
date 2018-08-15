@@ -3,16 +3,15 @@
 namespace Creative\PipedriveModule;
 
 use Bitrix\Main\Web\HttpClient;
-use Creative\PipedriveModule\PipedriveHelper;
 use Exception;
 
 class Pipedrive
 {
-
-
     /**
-     * Возвращает всех пользователей, c почтой $email
+     * Возвращает всех пользователей, c почтой $email.
+     *
      * @return array|bool - массив пользователей с почтой $email, или false
+     *
      * @throws Exception - если не указан параметр $email
      */
     public function getPersonListByEmail($email)
@@ -42,9 +41,12 @@ class Pipedrive
 
     /**
      * Ищет пользователя по $email (даже если у него указано несколько email), <br>
-     * если в результате несколько пользователей, то выбирает первого
+     * если в результате несколько пользователей, то выбирает первого.
+     *
      * @param $email
+     *
      * @throws Exception
+     *
      * @return array|bool - возвращает массив с данными найденного пользователя, либо false
      */
     public function getPersonByEmailExt($email)
@@ -79,12 +81,15 @@ class Pipedrive
 
         return false;
     }
-    
+
     /**
-     * Получает данные о пользователе
+     * Получает данные о пользователе.
+     *
      * @param $personId - id персоны
-     * @return bool - false, если персона не найдена
+     *
+     * @return bool  - false, если персона не найдена
      * @return array - данные пользователя, в случае, если пользователь есть
+     *
      * @throws Exception - если не указан параметр $personId
      */
     public function getPersonInfoById($personId)
@@ -116,10 +121,12 @@ class Pipedrive
      * > name (string) [обязательный]<br>
      * > email (string)<br>
      * > phone (string)<br>
-     * > org_id (int) - id организации, к которой отнести пользователя<br>
+     * > org_id (int) - id организации, к которой отнести пользователя<br>.
      *
      * @param array $personFields - массив с полями пользователя
+     *
      * @throws Exception
+     *
      * @return bool|int
      */
     public function createPerson(array $personFields)
@@ -139,7 +146,7 @@ class Pipedrive
         );
 
         if (isset($result['data']['id'])) {
-            return (int)$result['data']['id'];
+            return (int) $result['data']['id'];
         } else {
             return false;
         }
@@ -147,10 +154,13 @@ class Pipedrive
 
     /**
      * Обновляет поля $personFields пользователя c ID $personId.
+     *
      * @param $personId - ID пользователя (обязательный)
      * @param array $personFields - массив полей пользователя, которые необходимо обновить (обязательный), если передать пустой массив
-     * ничего не обновится
+     *                            ничего не обновится
+     *
      * @throws Exception
+     *
      * @return bool - вернет false, если пользователь не обновился, true, если обновился
      */
     public function updatePerson($personId, array $personFields)
@@ -184,9 +194,12 @@ class Pipedrive
     }
 
     /**
-     * Поиск организации по названию (точное совпадение)
+     * Поиск организации по названию (точное совпадение).
+     *
      * @param $nameOrg - Название организации
+     *
      * @return bool|int - возвращает id организации, если она есть в пайпе, иначе false
+     *
      * @throws Exception - если не указан параметр $nameOrg
      */
     public function findOrganizationByName($nameOrg)
@@ -226,9 +239,12 @@ class Pipedrive
     }
 
     /**
-     * Получает данные организации по ID
+     * Получает данные организации по ID.
+     *
      * @param $orgId
+     *
      * @return bool
+     *
      * @throws Exception
      */
     public function getOrganizationInfoById($orgId)
@@ -255,10 +271,13 @@ class Pipedrive
     }
 
     /**
-     * Добавление организации
+     * Добавление организации.
+     *
      * @param array $orgFields - массив полей организации. Должен обязательно содержать name - название организации.
-     * Также может содержать пользовательские поля, у которых ключами должны быть хеши)
+     *                         Также может содержать пользовательские поля, у которых ключами должны быть хеши)
+     *
      * @return bool|int
+     *
      * @throws Exception - если не указан параметр name в массиве $orgFields
      */
     public function createOrganization(array $orgFields)
@@ -278,25 +297,25 @@ class Pipedrive
         );
 
         if (isset($result['data']['id'])) {
-            return (int)$result['data']['id'];
+            return (int) $result['data']['id'];
         } else {
             return false;
         }
     }
 
-
-
-
     /**
-     * Создание заметки в pipedrive
+     * Создание заметки в pipedrive.
      *
      * В массив $noteFields можно передать поля:<br>
      * > content - текст заметки (required)<br>
      * > deal_id - id сделки к которой прикрепить заметку<br>
      * > person_id - id пользователя с котороым ассоциировать заметку<br>
      * > org_id - id организации с которой ассоциировать заметку<br>
+     *
      * @param array $noteFields
+     *
      * @throws Exception
+     *
      * @return bool
      */
     public function createNote(array $noteFields)
@@ -328,9 +347,12 @@ class Pipedrive
     }
 
     /**
-     * Возвращает этап $stageId
+     * Возвращает этап $stageId.
+     *
      * @param $stageId - id этапа
+     *
      * @throws Exception
+     *
      * @return array|bool - возвр. массив параметров этапа, если он существует, иначе false
      */
     public function getStageDetail($stageId)
@@ -350,15 +372,17 @@ class Pipedrive
         );
 
         if (!empty($result['data']['id'])) {
-            return (array)$result['data'];
+            return (array) $result['data'];
         } else {
             return false;
         }
     }
 
     /**
-     * Возвращает массив параметров этапов
+     * Возвращает массив параметров этапов.
+     *
      * @param string $pipelineId - id воронки к которой относятся запрашиваемые этапы (если не указан, вернет все этапы)
+     *
      * @return array|bool - возвр. массив полей этапов, если существует хотя бы один, иначе false
      */
     public function getStages($pipelineId = '')
@@ -379,15 +403,15 @@ class Pipedrive
         );
 
         if (!empty($result['data'][0]['id'])) {
-            return (array)$result['data'];
+            return (array) $result['data'];
         } else {
             return false;
         }
     }
 
-
     /**
-     * Возвращает список всех полей сделки
+     * Возвращает список всех полей сделки.
+     *
      * @return array|bool - массив с параметрами полями сделки, или false, если поля не найденый
      */
     public function getDealFields()
@@ -403,17 +427,19 @@ class Pipedrive
         );
 
         if (!empty($result['data'])) {
-            return (array)$result['data'];
+            return (array) $result['data'];
         } else {
             return false;
         }
     }
 
-
     /**
-     * Возвращает параметры поля сделки по его id
+     * Возвращает параметры поля сделки по его id.
+     *
      * @param $fieldId - id поля
+     *
      * @throws Exception
+     *
      * @return array|bool - массив с параметрами полей сделки, или false, если поле не найдено
      */
     public function getDealField($fieldId)
@@ -433,16 +459,19 @@ class Pipedrive
         );
 
         if (!empty($result['data']['id'])) {
-            return (array)$result['data'];
+            return (array) $result['data'];
         } else {
             return false;
         }
     }
 
     /**
-     * Возвращает параметры поля пользователя по его id
+     * Возвращает параметры поля пользователя по его id.
+     *
      * @param $fieldId - id поля
+     *
      * @throws Exception
+     *
      * @return array|bool - массив с параметрами полей сделки, или false, если поле не найдено
      */
     public function getUserField($fieldId)
@@ -462,15 +491,15 @@ class Pipedrive
         );
 
         if (!empty($result['data']['id'])) {
-            return (array)$result['data'];
+            return (array) $result['data'];
         } else {
             return false;
         }
-
     }
 
     /**
-     * Возвращает массив пользователей
+     * Возвращает массив пользователей.
+     *
      * @return array|bool - массив пользователей | false - если ничего не найдено
      */
     public function getUsersList()
@@ -486,17 +515,18 @@ class Pipedrive
         );
 
         if (!empty($result['data'])) {
-            return (array)$result['data'];
+            return (array) $result['data'];
         } else {
             return false;
         }
     }
 
-
     /**
-     * Обновление данных о сделке
+     * Обновление данных о сделке.
+     *
      * @param $dealId - id сделки в пайпе
      * @param array $dealUpdData - массив с полями, которые нужно изменить у сделки
+     *
      * @return bool - true, если сделка обновилать, иначе false
      */
     public function updateDeal($dealId, array $dealUpdData)
@@ -523,5 +553,4 @@ class Pipedrive
             return false;
         }
     }
-
 }

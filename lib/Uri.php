@@ -6,21 +6,19 @@ use Exception;
 
 /**
  * Class Uri
- * Класс для подготовки URI
- *
- * @package anvein\pipedrive_sdk
+ * Класс для подготовки URI.
  */
 class Uri
 {
     /**
-     * Протокол (схема)
+     * Протокол (схема).
      *
      * @var string
      */
     protected $protocol = '';
 
     /**
-     * Userinfo
+     * Userinfo.
      *
      * @var array
      */
@@ -41,26 +39,25 @@ class Uri
     protected $port = '';
 
     /**
-     * Путь
+     * Путь.
      *
      * @var string
      */
     protected $path = '';
 
     /**
-     * Get-параметры (query / запрос)
+     * Get-параметры (query / запрос).
      *
      * @var array
      */
     protected $query = [];
 
     /**
-     * Якорь (фрагмент)
+     * Якорь (фрагмент).
      *
      * @var string
      */
     protected $anchor = '';
-
 
     /**
      * Uri constructor.
@@ -74,9 +71,8 @@ class Uri
         }
     }
 
-
     /**
-     * Возвращает протокол
+     * Возвращает протокол.
      *
      * @param bool $isFull - если true, то вернет с ://
      *
@@ -92,7 +88,7 @@ class Uri
     }
 
     /**
-     * Задает протокол
+     * Задает протокол.
      *
      * @param string $protocol
      *
@@ -101,11 +97,12 @@ class Uri
     public function setProtocol(string $protocol): self
     {
         $this->protocol = str_replace('://', '', trim($protocol));
+
         return $this;
     }
 
     /**
-     * Возвращает массив с userInfo
+     * Возвращает массив с userInfo.
      *
      * @return array
      */
@@ -116,7 +113,7 @@ class Uri
 
     /**
      * Возвращает userInfo в виде подготовленной строки (как в URI)
-     * user:password
+     * user:password.
      *
      * @return string
      */
@@ -140,9 +137,10 @@ class Uri
     public function setUserInfo(string $login, string $password = ''): self
     {
         $this->userInfo = [
-            'login'    => $login,
-            'password' => $password
+            'login' => $login,
+            'password' => $password,
         ];
+
         return $this;
     }
 
@@ -162,6 +160,7 @@ class Uri
     public function setHost(string $host): Uri
     {
         $this->host = str_replace('/', '', trim($host));
+
         return $this;
     }
 
@@ -202,7 +201,7 @@ class Uri
     }
 
     /**
-     * Задает path
+     * Задает path.
      *
      * @param string $path
      *
@@ -221,11 +220,12 @@ class Uri
         }
 
         $this->path = $path;
+
         return $this;
     }
 
     /**
-     * Добавляет $path к концу path
+     * Добавляет $path к концу path.
      *
      * @param string $path
      *
@@ -243,11 +243,12 @@ class Uri
         }
 
         $this->path .= $path;
+
         return $this;
     }
 
     /**
-     * Возвращает массив с get-параметрами (элементами query)
+     * Возвращает массив с get-параметрами (элементами query).
      *
      * @return array
      */
@@ -259,7 +260,7 @@ class Uri
     /**
      * Задает ассоциативный массив get-параметров, где каждый элемент имеет:
      * ключ - (string) ключ get-параметра
-     * значение - (string) значение get-параметра
+     * значение - (string) значение get-параметра.
      *
      * @param array $getParams
      *
@@ -273,14 +274,14 @@ class Uri
 //                throw new Exception("Не задан ключ get-параметра {$value} или он не является строкой");
 //            }
 
-            $this->query[$key] = (string)$value;
+            $this->query[$key] = (string) $value;
         }
 
         return $this;
     }
 
     /**
-     * Задает get-параметры (query) из строки query (?key=one&key=two)
+     * Задает get-параметры (query) из строки query (?key=one&key=two).
      *
      * @param string $query
      *
@@ -302,11 +303,12 @@ class Uri
         }
 
         $this->query = $arGetParams;
+
         return $this;
     }
 
     /**
-     * Возвращает массив с get-параметрами
+     * Возвращает массив с get-параметрами.
      *
      * @return array
      */
@@ -316,7 +318,7 @@ class Uri
     }
 
     /**
-     * Возвращает строку с get-параметрами
+     * Возвращает строку с get-параметрами.
      *
      * @return string
      */
@@ -334,9 +336,6 @@ class Uri
         return '?' . implode('&', $arQuery);
     }
 
-    /**
-     * @return null
-     */
     public function getAnchor(bool $forUri = false): string
     {
         if ($forUri && !empty($this->anchor)) {
@@ -356,6 +355,7 @@ class Uri
         $anchor = str_replace('#', '', trim($anchor));
 
         $this->anchor = $anchor;
+
         return $this;
     }
 
@@ -365,8 +365,6 @@ class Uri
      * @param string $uri
      *
      * @throws Exception - URI не распознан
-     *
-     * @return void
      */
     protected function parseUri(string $uri): self
     {
@@ -408,7 +406,7 @@ class Uri
     }
 
     /**
-     * Генерирует из имеющихся частей URI
+     * Генерирует из имеющихся частей URI.
      *
      * @return string - готовый URI
      */
@@ -427,7 +425,7 @@ class Uri
     }
 
     /**
-     * Печатает URI
+     * Печатает URI.
      *
      * @return string
      */
@@ -435,5 +433,4 @@ class Uri
     {
         return $this->getUri();
     }
-
 }

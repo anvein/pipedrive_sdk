@@ -6,11 +6,8 @@ use anvein\pipedrive_sdk\Pipedrive;
 use Psr\Http\Message\ResponseInterface;
 use Exception;
 
-
 /**
- * Class BaseEntity
- *
- * @package anvein\pipedrive_sdk\Entities
+ * Class BaseEntity.
  */
 abstract class BaseEntity
 {
@@ -47,11 +44,12 @@ abstract class BaseEntity
     }
 
     /**
-     * Обрабатывает результат ответа от pipedrive
+     * Обрабатывает результат ответа от pipedrive.
      *
      * @param array $pipeResponse
      *
      * @return array
+     *
      * @throws Exception
      */
     protected function handleResponce(ResponseInterface $pipeResponse)
@@ -69,10 +67,10 @@ abstract class BaseEntity
     }
 
     /**
-     * Подготавливает Request для Pipedrive и отправляет его
+     * Подготавливает Request для Pipedrive и отправляет его.
      *
      * @param string $method
-     * @param string $uri - относительно /v1/
+     * @param string $uri     - относительно /v1/
      * @param array  $query
      * @param array  $headers
      * @param array  $body
@@ -93,20 +91,19 @@ abstract class BaseEntity
             $method,
             $uri,
             [
-                'json'          => $body,
-                'query'         => $query,
-                'headers'       => $headers,
-                'debug'         => $this->isDebug ?: false,
-                'http_errors'   => false,
+                'json' => $body,
+                'query' => $query,
+                'headers' => $headers,
+                'debug' => $this->isDebug ?: false,
+                'http_errors' => false,
             ]
-
         );
     }
 
     /**
-     * Отправляет запрос методом GET
+     * Отправляет запрос методом GET.
      *
-     * @param string $uri - относительно /v1/
+     * @param string $uri     - относительно /v1/
      * @param array  $query
      * @param array  $headers
      *
@@ -122,9 +119,9 @@ abstract class BaseEntity
     }
 
     /**
-     * Отправляет запрос методом POST
+     * Отправляет запрос методом POST.
      *
-     * @param string $uri - относительно /v1/
+     * @param string $uri     - относительно /v1/
      * @param array  $body
      * @param array  $query
      * @param array  $headers
@@ -143,9 +140,9 @@ abstract class BaseEntity
     }
 
     /**
-     * Отправляет запрос методом DELETE
+     * Отправляет запрос методом DELETE.
      *
-     * @param string $uri - относительно /v1/
+     * @param string $uri     - относительно /v1/
      * @param array  $body
      * @param array  $query
      * @param array  $headers
@@ -164,9 +161,9 @@ abstract class BaseEntity
     }
 
     /**
-     * Отправляет запрос методом PUT
+     * Отправляет запрос методом PUT.
      *
-     * @param string $uri - относительно /v1/
+     * @param string $uri     - относительно /v1/
      * @param array  $body
      * @param array  $query
      * @param array  $headers
@@ -183,5 +180,4 @@ abstract class BaseEntity
             $body
         );
     }
-
 }

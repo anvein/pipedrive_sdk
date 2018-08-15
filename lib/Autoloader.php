@@ -4,7 +4,6 @@ namespace anvein\pipedrive_sdk;
 
 use Exception;
 
-
 class Autoloader
 {
     private static $arPaths = [];
@@ -54,6 +53,7 @@ class Autoloader
         foreach ($paths as $path) {
             self::addPath($path);
         }
+
         return self::$arPaths;
     }
 
@@ -73,6 +73,7 @@ class Autoloader
         }
         if (is_dir($path)) {
             self::$arPaths[] = $path;
+
             return self::$arPaths;
         } else {
             throw new Exception("Путь для поиска файлов с классами не существует {$path}");

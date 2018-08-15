@@ -2,16 +2,15 @@
 
 namespace Creative\PipedriveModule;
 
-use Bitrix\Main\Loader;
-use Bitrix\Highloadblock\HighloadBlockTable;
 use Bitrix\Main\Config\Option;
 
 class PipedriveHelper
 {
     /**
-     * Возвращает случайный id модератора pipedrive из настроек
+     * Возвращает случайный id модератора pipedrive из настроек.
+     *
      * @return string - id модератора
-     * @return false - если ни один id не указан в настройках
+     * @return false  - если ни один id не указан в настройках
      */
     public static function getRandModeratorId()
     {
@@ -25,14 +24,15 @@ class PipedriveHelper
     }
 
     /**
-     * Получаем список id модераторов из настроек
+     * Получаем список id модераторов из настроек.
+     *
      * @return array
      */
     public static function getListIdModerators()
     {
         $arrTokens = [];
 
-        for ($i = 1; $i < 11; $i++) {
+        for ($i = 1; $i < 11; ++$i) {
             $valueOpt = trim(Option::get('creative.pipedrive', 'id_moderator_pipedrive_' . $i));
             if ($valueOpt !== '') {
                 $arrTokens[] = $valueOpt;
@@ -43,8 +43,9 @@ class PipedriveHelper
     }
 
     /**
-     * Получает токен администратора
-     * @return bool - если не задан, то
+     * Получает токен администратора.
+     *
+     * @return bool   - если не задан, то
      * @return string - если он задан, то возвр. токен
      */
     public static function getAdminToken()
@@ -56,5 +57,4 @@ class PipedriveHelper
             return $token;
         }
     }
-
 }

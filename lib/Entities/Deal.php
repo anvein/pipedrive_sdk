@@ -6,15 +6,12 @@ use Exception;
 
 /**
  * Class Deal
- * API reference - https://developers.pipedrive.com/docs/api/v1/#!/Deals
- *
- * @package anvein\pipedrive_sdk\Entities
+ * API reference - https://developers.pipedrive.com/docs/api/v1/#!/Deals.
  */
 class Deal
 {
-
     /**
-     * Создание сделки в pipedrive
+     * Создание сделки в pipedrive.
      *
      * В массив $dealFields можно передать:<br>
      * > title - заголовок сделки (обязательный)<br>
@@ -23,8 +20,11 @@ class Deal
      * > org_id - организация с которой ассоциируется сделка<br>
      * > stage_id - этап на который попадет сделка<br>
      * и прочие/кастомные поля.
+     *
      * @param array $dealFields
+     *
      * @return bool|int
+     *
      * @throws Exception
      */
     public function createDeal(array $dealFields)
@@ -45,7 +45,7 @@ class Deal
         );
 
         if (isset($result['data']['id'])) {
-            return (int)$result['data']['id'];
+            return (int) $result['data']['id'];
         } else {
             return false;
         }

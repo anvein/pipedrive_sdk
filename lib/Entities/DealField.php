@@ -2,19 +2,13 @@
 
 namespace anvein\pipedrive_sdk\Entities;
 
-use anvein\pipedrive_sdk\Pipedrive;
-use GuzzleHttp\ClientInterface;
-use Exception;
-
 /**
- * Class DealField
- *
- * @package anvein\pipedrive_sdk\Entities
+ * Class DealField.
  */
 class DealField extends BaseEntity
 {
     /**
-     * Возвращает данные о поле сделки по ID
+     * Возвращает данные о поле сделки по ID.
      *
      * @param int $id - id поля
      *
@@ -30,7 +24,7 @@ class DealField extends BaseEntity
     }
 
     /**
-     * Возвращает все поля сделки
+     * Возвращает все поля сделки.
      *
      * @return array
      */
@@ -44,7 +38,7 @@ class DealField extends BaseEntity
     }
 
     /**
-     * Создает поле сделки
+     * Создает поле сделки.
      *
      * @param string $name      - имя поля
      * @param string $fieldType - тип поля
@@ -57,9 +51,9 @@ class DealField extends BaseEntity
         $responce = $this->postRequest(
             'dealFields/',
             [
-                'name'       => $name,
+                'name' => $name,
                 'field_type' => $fieldType,
-                'options'    => $options,
+                'options' => $options,
             ]
         );
 
@@ -67,14 +61,13 @@ class DealField extends BaseEntity
     }
 
     /**
-     * Обновляет поле сделки
+     * Обновляет поле сделки.
      *
-     * @param int $id - ID поля, которое надо изменить
-     * @param string $name - новое имя поля
-     * @param array $options - варианты значений поля для типов: enum, set
+     * @param int    $id      - ID поля, которое надо изменить
+     * @param string $name    - новое имя поля
+     * @param array  $options - варианты значений поля для типов: enum, set
      *
      * @return array
-     *
      */
     public function update(int $id, string $name, array $options = []): array
     {
@@ -90,7 +83,7 @@ class DealField extends BaseEntity
     }
 
     /**
-     * Удаляет поле сделки
+     * Удаляет поле сделки.
      *
      * @param int $id - id удаляемого поля
      *
@@ -98,7 +91,7 @@ class DealField extends BaseEntity
      */
     public function delete(int $id)
     {
-        $this->deleteRequest(
+        $responce = $this->deleteRequest(
             "dealFields/{$id}"
         );
 
@@ -106,7 +99,7 @@ class DealField extends BaseEntity
     }
 
     /**
-     * Удаляет несколько полей сделки
+     * Удаляет несколько полей сделки.
      *
      * @param array $arIds
      *
@@ -114,7 +107,7 @@ class DealField extends BaseEntity
      */
     public function deleteSeveral(array $arIds): array
     {
-        $this->deleteRequest(
+        $responce = $this->deleteRequest(
             'dealFields/',
             [],
             [
@@ -124,5 +117,4 @@ class DealField extends BaseEntity
 
         return $this->handleResponce($responce);
     }
-
 }

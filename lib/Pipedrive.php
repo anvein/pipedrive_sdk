@@ -2,7 +2,6 @@
 
 namespace anvein\pipedrive_sdk;
 
-
 use anvein\pipedrive_sdk\Entities\DealField;
 use anvein\pipedrive_sdk\HttpClients\IHttpClient;
 use anvein\pipedrive_sdk\Loggers\ILogger;
@@ -12,7 +11,7 @@ use GuzzleHttp\Client;
 class Pipedrive
 {
     /**
-     * URI подключения API
+     * URI подключения API.
      */
     const API_URI = 'https://api.pipedrive.com/v1/';
 
@@ -32,14 +31,14 @@ class Pipedrive
     protected $token = '';
 
     /**
-     * Включение режима отладки
+     * Включение режима отладки.
      *
      * @var bool
      */
     protected $isDebug = false;
 
     /**
-     * Сущности
+     * Сущности.
      */
     public $user = null; // TODO: реальзовать user
 
@@ -85,7 +84,7 @@ class Pipedrive
     }
 
     /**
-     * Возвращает токен подключения
+     * Возвращает токен подключения.
      *
      * @return string
      */
@@ -117,5 +116,4 @@ class Pipedrive
     {
         return $this->isDebug;
     }
-
 }
