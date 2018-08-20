@@ -3,6 +3,7 @@
 namespace anvein\pipedrive_sdk;
 
 use anvein\pipedrive_sdk\Entities\DealField;
+use anvein\pipedrive_sdk\Entities\Person;
 use anvein\pipedrive_sdk\HttpClients\IHttpClient;
 use anvein\pipedrive_sdk\Loggers\ILogger;
 use GuzzleHttp\ClientInterface;
@@ -50,7 +51,7 @@ class Pipedrive
     /**
      * @var DealField|null
      */
-    public $dealField = null; // TODO: реализовать dealFields
+    public $dealField = null;
 
     public $note = null; // TODO: реализовать note
     public $noteField = null; // TODO: реализовать notrFields
@@ -80,7 +81,10 @@ class Pipedrive
         }
         $this->httpClient = $httpClient;
 
-        $this->dealField = new DealField($this);
+        $this->dealField = new DealField($this); // готово
+        $this->person = new Person($this);
+
+
     }
 
     /**

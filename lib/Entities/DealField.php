@@ -20,7 +20,7 @@ class DealField extends BaseEntity
             "dealFields/{$id}/"
         );
 
-        return $this->handleResponce($responce);
+        return $this->handleResponse($responce);
     }
 
     /**
@@ -34,7 +34,7 @@ class DealField extends BaseEntity
             'dealFields/'
         );
 
-        return $this->handleResponce($responce);
+        return $this->handleResponse($responce);
     }
 
     /**
@@ -57,7 +57,7 @@ class DealField extends BaseEntity
             ]
         );
 
-        return $this->handleResponce($responce);
+        return $this->handleResponse($responce);
     }
 
     /**
@@ -79,7 +79,7 @@ class DealField extends BaseEntity
             ]
         );
 
-        return $this->handleResponce($responce);
+        return $this->handleResponse($responce);
     }
 
     /**
@@ -95,7 +95,7 @@ class DealField extends BaseEntity
             "dealFields/{$id}"
         );
 
-        return $this->handleResponce($responce);
+        return $this->handleResponse($responce);
     }
 
     /**
@@ -115,6 +115,6 @@ class DealField extends BaseEntity
             ]
         );
 
-        return $this->handleResponce($responce);
+        return $this->handleResponse($responce);
     }
 }

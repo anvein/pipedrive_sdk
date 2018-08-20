@@ -52,7 +52,7 @@ abstract class BaseEntity
      *
      * @throws Exception
      */
-    protected function handleResponce(ResponseInterface $pipeResponse)
+    protected function handleResponse(ResponseInterface $pipeResponse)
     {
         $result = json_decode(
             $pipeResponse->getBody()->getContents(),
@@ -180,4 +180,17 @@ abstract class BaseEntity
             $body
         );
     }
+
+    /**
+     * Удаляет элементы null из массива
+     *
+     * @param array $arr
+     *
+     * @return array
+     */
+    protected function removeNullElements(array $arr = []): array
+    {
+        return array_diff($arr, [null]);
+    }
+
 }
