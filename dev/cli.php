@@ -8,7 +8,7 @@ $res = $pipe->person->update(
     1,
     'пест'
     [
-        'aaa'
+        'aaa@test.ru'
     ]
 
 );
